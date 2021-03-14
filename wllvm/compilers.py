@@ -7,7 +7,7 @@ import sys
 import tempfile
 import hashlib
 
-from split_function_wrapper import *
+from .split_function_wrapper import *
 from shutil import copyfile
 from .filetype import FileType
 from .popenwrapper import Popen
