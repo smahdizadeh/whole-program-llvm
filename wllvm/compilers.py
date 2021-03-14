@@ -7,7 +7,6 @@ import sys
 import tempfile
 import hashlib
 
-from .split_function_wrapper import *
 from shutil import copyfile
 from .filetype import FileType
 from .popenwrapper import Popen
@@ -15,6 +14,13 @@ from .arglistfilter import ArgumentListFilter
 
 from .logconfig import logConfig
 from scipy.weave.converters import default
+
+def run_split_function_parser(args, file_path):
+    args_string = ''
+    for i in args:
+        args_string = args_string + ' ' + i 
+    split_function_parser = os.getenv('SPLIT_FUNCTION_PARSER_PATH')    
+    os.system( split_function_parser + ' ' + args_string + ' ' + file_path )
 
 # Internal logger
 _logger = logConfig(__name__)
