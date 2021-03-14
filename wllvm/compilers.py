@@ -13,7 +13,6 @@ from .popenwrapper import Popen
 from .arglistfilter import ArgumentListFilter
 
 from .logconfig import logConfig
-from scipy.weave.converters import default
 
 def run_split_function_parser(args, file_path):
     args_string = ''
