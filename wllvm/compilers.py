@@ -7,12 +7,14 @@ import sys
 import tempfile
 import hashlib
 
+from split_function_wrapper import *
 from shutil import copyfile
 from .filetype import FileType
 from .popenwrapper import Popen
 from .arglistfilter import ArgumentListFilter
 
 from .logconfig import logConfig
+from scipy.weave.converters import default
 
 # Internal logger
 _logger = logConfig(__name__)
@@ -313,10 +315,14 @@ def buildAndAttachBitcode(builder, af):
             objFile = af.outputFilename
             bcFile = af.getBitcodeFileName()
         buildBitcodeFile(builder, srcFile, bcFile)
+        if os.getenv('SPLIT_FUNCTION_PARSER_PATH', default = None) != None:
+            print('case 1 of compiling '+ str(srcFile))
+            run_split_function_parser(af.compileArgs, srcFile)
         attachBitcodePathToObject(bcFile, objFile)
 
     else:
-
+        print('Not expecting case 2 of compiling '+ str(af.inputFiles))
+        assert(False)
         for srcFile in af.inputFiles:
             _logger.debug('Not compile only case: %s', srcFile)
             (objFile, bcFile) = af.getArtifactNames(srcFile, hidden)
