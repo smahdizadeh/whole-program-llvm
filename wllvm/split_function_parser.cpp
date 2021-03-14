@@ -143,10 +143,10 @@ CXChildVisitResult functionVisitor( CXCursor cursor, CXCursor /* parent */, CXCl
 //		std::cout << "  " << name << ": " << endLine - startLine << " " << startColumn << " " << endColumn << "\n";
 
 		std::string OutputFilename = OutputFolderPath + "/func_" + mangled_name + ".cpp";
-		if (fileExists(OutputFilename)) {
-			std::cout << "Duplicate function name: "<<mangled_name<<" terminating function spliting...\n";
-			assert(false);
-		}
+		// if (fileExists(OutputFilename)) {
+		// 	std::cout << "Duplicate function name: "<<mangled_name<<" terminating function spliting...\n";
+		// 	assert(false);
+		// }
 		std::ofstream fouts(OutputFilename.c_str());
 //		std::cout  << OutputFilename << "\n";
 		if (!fouts.is_open()) {
@@ -182,6 +182,7 @@ CXChildVisitResult functionVisitor( CXCursor cursor, CXCursor /* parent */, CXCl
 				fouts << line << "\n";
 			}
 		}
+		fouts <<"\n";
 		fouts.close();
 	}
 
