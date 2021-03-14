@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """This is a wrapper around the split function parser.
 Note: must define SPLIT_FUNCTION_PARSER_PATH
 Note: must define SPLIT_FUNCTION_PARSER_OUTPUT_FOLDER_PATH
